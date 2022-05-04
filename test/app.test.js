@@ -49,4 +49,10 @@ describe("Suite's tests for app.js", () => {
         const response = await request(app).put(`/v1/explorers/${id}`).send()
         expect(response._body.message).toMatch(/an error has ocurred/);
     });
+
+    test("9) Checking if the param /DELETE/:id is undefined", async () => {
+        let id;
+        const response = await request(app).delete(`/v1/explorers/${id}`).send()
+        expect(response._body.message).toMatch(/an error has ocurred/);
+    });
 });

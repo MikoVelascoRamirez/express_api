@@ -47,6 +47,16 @@ app.put("/v1/explorers/:id", (req, res) => {
     res.status(400).json({message: "an error has ocurred"})
 })
 
+//Fifth route (DELETE /v1/explorers/:id) deleting a new explorer
+app.delete("/v1/explorers/:id", (req, res) => {
+    console.log(`Api Explorers DELETE request ${new Date()}`);
+    console.log(`Delete explorer with id: ${req.params.id}`)
+
+    if(req.params.id !== "undefined") res.status(200).json({message: "explorer deleted"})
+
+    res.status(400).json({message: "an error has ocurred"})
+});
+
 //Initializing app
 app.listen(PORT_DEFAULT, () => console.log(`Example app listening at port ${PORT_DEFAULT}`));
 
