@@ -19,4 +19,22 @@ describe("Suite's tests for app.js", () => {
         expect(id).toBe(1);
         expect(name).toBe("Carlo");
     });
+
+    test("4) Getting a 404 status code /POST", async () => {        
+        const response = await request(app).post('/v1/explorers').send()
+        expect(response.statusCode).toBe(404);
+    });
+
+
+    test("5) Verifying if the content-type response message is an application/json", async () => {
+        const response = await request(app).post('/v1/explorers').send()
+        expect(response.get('Content-Type')).toMatch(/application\/json/);
+    });
+
+
+    test("6) Checking if the explorer was saved", async () => {
+        const explorer = { id: Math.round(Math.random() * (5-1))+1, name: "Miko" }
+        const response = await request(app).post('/v1/explorers').send(explorer)
+        expect(response.body.response).toBe("Explorer created");
+    })
 });

@@ -28,6 +28,15 @@ app.get("/v1/explorers/:id", (req, res) => {
     res.status(200).json(explorer);
 });
 
+//Third route (POST /v1/explorers) creating a new explorer
+app.post("/v1/explorers", (req, res) => {
+    console.log(`Api explorers POST request ${new Date()}`)
+    const response = req.body.name ? "Explorer created" : "Algo salió mal, intente de nuevo";
+    if(response === "Explorer created") res.status(201)        
+    else res.status(404);       
+    res.json({ response })
+});
+
 //Initializing app
 app.listen(PORT_DEFAULT, () => console.log(`Example app listening at port ${PORT_DEFAULT}`));
 
