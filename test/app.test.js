@@ -35,7 +35,7 @@ describe("Suite's tests for app.js", () => {
     test("6) Checking if the explorer was saved", async () => {
         const explorer = { id: Math.round(Math.random() * (5-1))+1, name: "Miko" }
         const response = await request(app).post('/v1/explorers').send(explorer)
-        expect(response.body.response).toBe("Explorer created");
+        expect(response._body.response).toBe("Explorer created");
     })
 
     test("7) Checking if the endpoint /PUT/:id update a explorer", async ()=> {
@@ -47,6 +47,6 @@ describe("Suite's tests for app.js", () => {
     test("8) Checking if the param /PUT/:id is undefined", async () => {
         let id;
         const response = await request(app).put(`/v1/explorers/${id}`).send()
-        expect(response.body.message).toMatch(/an error has ocurred/);
+        expect(response._body.message).toMatch(/an error has ocurred/);
     });
 });
