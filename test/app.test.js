@@ -61,4 +61,10 @@ describe("Suite's tests for app.js", () => {
         const response = await request(app).delete(`/v1/explorers/${id}`).send()
         expect(response._body.message).toMatch(/explorer deleted/);
     });
+
+    test("11) Verifying if the param of /DELETE/:id is not a number", async () => {
+        let id = "asasa";
+        const response = await request(app).delete(`/v1/explorers/${id}`).send()
+        expect(response._body.message).toMatch(/an error has ocurred/);
+    });
 });
