@@ -37,4 +37,16 @@ describe("Suite's tests for app.js", () => {
         const response = await request(app).post('/v1/explorers').send(explorer)
         expect(response.body.response).toBe("Explorer created");
     })
+
+    test("7) Checking if the endpoint /PUT/:id update a explorer", async ()=> {
+        const id = 2
+        const response = await request(app).put(`/v1/explorers/:${id}`).send()
+        expect(response.ok).not.toBeFalsy();
+    });
+
+    test("8) Checking if the param /PUT/:id is undefined", async () => {
+        let id;
+        const response = await request(app).put(`/v1/explorers/${id}`).send()
+        expect(response.body.message).toMatch(/an error has ocurred/);
+    });
 });
