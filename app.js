@@ -41,8 +41,10 @@ app.post("/v1/explorers", (req, res) => {
 app.put("/v1/explorers/:id", (req, res) => { 
     console.log(`Api Explorers PUT request ${new Date()}`);
     console.log(`Update explorer with id: ${req.params.id}`)
-    if(req.params.id === "undefined") res.status(400).json({message: "an error has ocurred"})
-    else res.status(200).json({message: "explorer updated"})
+
+    if(req.params.id !== "undefined") res.status(200).json({message: "explorer updated"})
+
+    res.status(400).json({message: "an error has ocurred"})
 })
 
 //Initializing app
