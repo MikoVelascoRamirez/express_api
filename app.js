@@ -52,9 +52,8 @@ app.delete("/v1/explorers/:id", (req, res) => {
     console.log(`Api Explorers DELETE request ${new Date()}`);
     console.log(`Delete explorer with id: ${req.params.id}`)
 
-    if(req.params.id !== "undefined") res.status(200).json({message: "explorer deleted"})
-
-    res.status(400).json({message: "an error has ocurred"})
+    if(isNaN(Number(req.params.id))) res.status(400).json({message: "an error has ocurred"})
+    else if(req.params.id !== "undefined") res.status(200).json({message: "explorer deleted"})
 });
 
 //Initializing app
